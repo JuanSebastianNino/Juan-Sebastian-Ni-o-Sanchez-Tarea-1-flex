@@ -1,0 +1,13 @@
+%%
+"colour" { printf("color"); }
+"flavour" { printf("flavor"); }
+"clever" { printf("smart"); }
+"smart" { printf("elegant"); }
+"conservative" { printf("liberal"); }
+"centre" { printf("center"); }
+"metre" { printf("meter"); }
+"litre" { printf("liter"); }
+"favourite" { printf("favorite"); }
+"honour" { printf("honor"); }
+. { printf("%s", yytext); }
+%%
