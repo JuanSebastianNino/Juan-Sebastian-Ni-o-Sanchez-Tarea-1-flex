@@ -15,4 +15,3 @@ int main(int argc, char **argv)
     yylex();
     printf("%8d%8d%8d\n", lines, words, chars);
 }
-/* Codigo explicado en archivo README junto con su ejemplo */
