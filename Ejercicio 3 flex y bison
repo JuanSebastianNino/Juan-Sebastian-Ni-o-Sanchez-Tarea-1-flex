@@ -1,0 +1,62 @@
+Operadores de nivel de bits:
+
+Pregunta: Agregue operadores de nivel de bits como AND y OR a la calculadora. -Instrucciones:
+
+Escaner (flex) se agregan los operadores | para OR y & para AND, para no tener una confusion entre OR y ABS, OR entiende al simbolo | y ABS a abs
+
+%{
+#include "y.tab.h"
+%}
+
+%%
+[0-9]+         { yylval = atoi(yytext); return NUMBER; }
+"abs"          { return ABS;}
+"+"            { return ADD;}
+"-"            { return SUB;}
+"*"            { return MUL;}
+"/"            { return DIV;}
+"&"            { return AND;}
+"|"            { return OR;}
+\n             { return EOL;}
+[ \t]          {}
+.              { return yytext[0];}
+%%
+
+Parser (bison) se agrego las operaciones a realizar cuando lleguen los tokens de AND y OR
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+%token NUMBER
+%token ADD SUB MUL DIV ABS
+%token AND OR
+%token EOL
+%%
+calclist:
+  | calclist exp EOL { printf("= %d\n", $2); }
+  ;
+exp: factor
+  |  exp ADD factor { $$ = $1 + $3; }
+  |  exp SUB factor { $$ = $1 - $3; }
+  |  exp AND factor { $$ = $1 & $3; }
+  |  exp OR  factor { $$ = $1 | $3; }
+  ;
+factor: term
+  |  factor MUL term { $$ = $1 * $3; }
+  |  factor DIV term { $$ = $1 / $3; }
+  ;
+term: NUMBER
+  |  ABS term { $$ = $2 >= 0 ? $2 : -$2; }
+  ;
+%%
+int main(int argc, char **argv) {
+    yyparse();
+    return 0;
+}
+void yyerror(char *s) {
+    fprintf(stderr, "error: %s\n", s);
+}
+
+Considere cómo implementar el operador OR usando una barra vertical ('|'), que también se usa para el valor absoluto unario.
+Discuta cómo puede diferenciar entre los dos usos del operador en expresiones como 'factor exp ABS'.
