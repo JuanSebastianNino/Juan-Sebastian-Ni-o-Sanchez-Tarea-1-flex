@@ -2,7 +2,62 @@ Conversión hexadecimal:
 
 Pregunta: Convierta la calculadora en una calculadora hexadecimal que acepte números hexadecimales y decimales.
 
+Archivo .l (escaner) aqui se identificaran los numeros hexadecimales y decimales, luego divide la entrada en tokens para que el parser los pueda aceptar:
 
+%{
+#include "y.tab.h"
+#include <stdlib.h>
+%}
+%%
+0x[0-9a-fA-F]+   { yylval = strtol(yytext, NULL, 16); return NUMBER; }
+[0-9]+           { yylval = atoi(yytext); return NUMBER; }
+"+"              { return ADD; }
+"-"              { return SUB; }
+"*"              { return MUL; }
+"/"              { return DIV; }
+"abs"            { return ABS; }
+\n               { return EOL; }
+[ \t]            {}
+.                {}
+%%
+int yywrap(void) 
+{ 
+return 1; 
+}
+
+Archivo .y (parser) Cuando se introduce un número, el analizador lo recibe desde 
+como un token NUMBER, el cual es convertido internamente a un valor entero 
+(usando strtol).
+
+%{
+#include <stdio.h>
+#include <stdlib.h>
+%}
+%token NUMBER
+%token ADD SUB MUL DIV ABS
+%token EOL
+%%
+calclist:
+  | calclist exp EOL { printf("= %d (0x%X)\n", $2, $2); }
+  ;
+exp: factor
+  | exp ADD factor { $$ = $1 + $3; }
+  | exp SUB factor { $$ = $1 - $3; }
+  ;
+factor: term
+  | factor MUL term { $$ = $1 * $3; }
+  | factor DIV term { $$ = $1 / $3; }
+  ;
+term: NUMBER
+  | ABS term { $$ = $2 >= 0 ? $2 : -$2; }
+  ;
+%%
+int main(void) {
+    return yyparse();
+}
+void yyerror(char *s) {
+    fprintf(stderr, "error: %s\n", s);
+}
 
 Instrucciones:
 Agregue un patrón como '0x[a-f0-9]+' en el escáner para identificar números hexadecimales.
