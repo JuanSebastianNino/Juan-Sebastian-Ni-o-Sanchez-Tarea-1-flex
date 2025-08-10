@@ -1,11 +1,31 @@
- %{
+//Escaner (Flex)
+
+%{
+#include "y.tab.h"
+%}
+
+%%
+[0-9]+      { yylval = atoi(yytext); return NUMBER; }
+"+"         { return ADD; }
+"-"         { return SUB; }
+"*"         { return MUL; }
+"/"         { return DIV; }
+"|"         { return ABS; }
+\n          { return EOL; }
+[ \t]       {}
+.           { printf("Token no reconocido: %s\n", yytext); }
+%%
+
+//Parser (Bison)
+
+%{
  #include <stdio.h>
  %}
  %token NUMBER
  %token ADD SUB MUL DIV ABS
  %token EOL
  %%
- calclist: /* nothing */
+ calclist:
  | calclist exp EOL { printf("= %d\n", $1);}
  ;
  exp: factor
