@@ -1,0 +1,12 @@
+Reconocimiento de tokens:
+
+Pregunta: ¿La versión manuscrita del escáner en el Ejemplo 1-4 reconoce exactamente los mismos tokens que la versión generada por flex?
+
+Solucion:
+la versión manuscrita del escáner NO reconoce exactamente los mismos tokens que la versión del Ejemplo 1-4. La versión manuscrita reconoce más tokens
+(paréntesis y comentarios) que no están presentes en la versión original de flex del Ejemplo 1-4.
+Manejo de Comentarios:
+Ejemplo 1-4: No maneja comentarios con //
+Manuscrita: Reconoce y ignora comentarios que comienzan con //
+
+Instrucciones: Compare las dos versiones del escáner. Identifique cualquier discrepancia en el reconocimiento de tokens y explique sus hallazgos.
