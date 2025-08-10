@@ -2,6 +2,9 @@ Manejo de comentarios:
 
 Pregunta: ¿La calculadora aceptará una línea que contenga solo un comentario? ¿Por qué no? ¿Sería más fácil corregir esto en el escáner o analizador?
 
-Solucion:
+Solucion: Utilizando la calculadora del ejemplo Numero 5, podemos ver que el analizador lexico ignora los comentarios y no envia tokens al parser,
+provocando que el parser no procese nada y por lo tanto no procese la entrada, esto no provocara ninguna actividad en la calculadora ya que se introdujo
+una entrada que nunca se proceso, es mas facil arraglar el error en un escaner, debido a que este trabaja con los datos antes de ser interpretados,
+solo se tiene que agregar una regla que detecte la linea con un solo comentario y el parser la pueda manejar como linea vacia.
 
 Instrucciones: Reflexiona sobre el papel de los comentarios en tu código. Considere cómo el escáner y el analizador manejan los comentarios y proporcione una explicación detallada de su razonamiento.
