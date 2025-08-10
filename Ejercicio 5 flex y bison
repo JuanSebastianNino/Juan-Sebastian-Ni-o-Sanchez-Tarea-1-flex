@@ -1,0 +1,15 @@
+Limitaciones de Flex:
+
+Pregunta: ¿Puedes pensar en idiomas para los que Flex no sería una buena herramienta para escribir un escáner?
+
+Los principales idiomas para los que Flex no sería una buena herramienta son los lenguajes de conteo y balance.
+Características de estos lenguajes:
+- Necesitan contar cuántas veces aparece un símbolo específico
+- Requieren que elementos de apertura tengan sus correspondientes elementos de cierre
+- Dependen de relaciones entre tokens distantes
+
+Flex no puede manejarlos por las siguientes razones
+- Flex está basado en expresiones regulares, que solo pueden reconocer lenguajes regulares.
+- Los lenguajes de conteo y balance requieren lenguajes context-free, donde un símbolo no terminal puede generar secuencias de terminales y no terminales con memoria de contexto.
+
+Instrucciones: Reflexiona sobre los tipos de idiomas y sus características. Proporcione ejemplos y justifique su razonamiento.
