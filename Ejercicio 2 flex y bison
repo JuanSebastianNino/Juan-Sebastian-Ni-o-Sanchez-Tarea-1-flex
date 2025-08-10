@@ -1,0 +1,11 @@
+Conversión hexadecimal:
+
+Pregunta: Convierta la calculadora en una calculadora hexadecimal que acepte números hexadecimales y decimales.
+
+
+
+Instrucciones:
+Agregue un patrón como '0x[a-f0-9]+' en el escáner para identificar números hexadecimales.
+Use 'strtol' en el código de acción para convertir la cadena en un número y almacenarlo en 'yylval'.
+Asegúrese de que la calculadora devuelva un token 'NUMBER'.
+Ajuste la salida 'printf' para mostrar los resultados en formatos decimales y hexadecimales.
