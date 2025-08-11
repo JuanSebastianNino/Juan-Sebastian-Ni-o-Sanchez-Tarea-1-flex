@@ -1,0 +1,11 @@
+Programa de conteo de palabras:
+
+Pregunta: Reescriba el programa de conteo de palabras en C. Ejecute algunos archivos grandes en ambas versiones. ¿Es la versión C notablemente más rápida? ¿Fue mucho más difícil de depurar?
+
+En el codigo de flex implementar el algoritmo fue mas facil que en C ya que en flex las reglas de produccion
+abarcan a mas pasibilidades que en C, a pesar de eso la velocidad en C es mas rapida, debido a que se procesa 
+el caracter apenas se pase por el y no procesa el string completo antes de analizar los caracteres como lo 
+hace flex, por eso la velocidad en C es mucho mayor.
+
+Instrucciones: Implemente el programa de conteo de palabras en C. Pruébelo con archivos grandes y compare el rendimiento con la versión anterior.
+Documente sus observaciones sobre la velocidad y la dificultad de depuración.
